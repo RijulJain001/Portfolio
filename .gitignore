@@ -1,0 +1,8 @@
+# Node, Python, and editor artifacts
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/

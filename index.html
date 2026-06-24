@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rijul Jain | IT Administrator & Security-Focused Portfolio</title>
+  <meta name="description" content="Portfolio of Rijul Jain - Information Technology Administrator with experience in enterprise support, Google Workspace, JumpCloud, Microsoft Azure, and ISO 27001 aligned operations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===================== PAGE LOADER ===================== -->
+  <div class="page-loader" id="page-loader" aria-live="polite" aria-label="Loading portfolio">
+    <div class="loader-inner">
+      <div class="loader-logo">RJ</div>
+      <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
+      <p class="loader-text" id="loader-text">Initializing…</p>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL OVERLAY ===================== -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-box" id="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Close project details">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ===================== INTERACTIVE TERMINAL MODAL ===================== -->
+  <div class="modal-overlay" id="terminal-overlay" role="dialog" aria-modal="true" aria-label="Interactive terminal" aria-hidden="true">
+    <div class="terminal-modal" id="terminal-modal">
+      <div class="terminal-modal-top">
+        <div class="terminal-dots"><span></span><span></span><span></span></div>
+        <span class="terminal-modal-title">rijul@itops:~$ - interactive terminal</span>
+        <button class="modal-close" id="terminal-close" aria-label="Close terminal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="terminal-output" id="terminal-output" aria-live="polite"></div>
+      <div class="terminal-input-row">
+        <span class="term-prompt-label">rijul@itops:~$</span>
+        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="type 'help' to start…" aria-label="Terminal command input">
+      </div>
+    </div>
+  </div>
+
+  <canvas id="code-background" aria-hidden="true"></canvas>
+  <div class="backdrop-glow" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#home" aria-label="Go to home">
+      <span class="brand-mark">RJ</span>
+      <span>Rijul Jain</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Portfolio sections">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Initiatives</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#certifications" class="nav-link">Certs</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="terminal-trigger-btn" id="terminal-trigger-btn" aria-label="Open interactive terminal" title="Open terminal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Terminal
+      </button>
+      <a class="button primary btn-sm" id="download-cv-btn" href="assets/Rijul_Jain_Profile.pdf" download aria-label="Download Resume">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav aria-label="Mobile navigation">
+      <a href="#about"          class="mobile-link">About</a>
+      <a href="#projects"       class="mobile-link">Initiatives</a>
+      <a href="#experience"     class="mobile-link">Experience</a>
+      <a href="#education"      class="mobile-link">Education</a>
+      <a href="#certifications" class="mobile-link">Certifications</a>
+      <a href="#skills"         class="mobile-link">Skills</a>
+      <a href="#contact"        class="mobile-link">Contact</a>
+      <a href="assets/Rijul_Jain_Profile.pdf" download class="mobile-link mobile-link-dl">⬇ Download Resume</a>
+    </nav>
+  </div>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="home" class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow" id="eyebrow-text">rijul@portfolio:~$ <span id="typewriter"></span><span class="cursor-blink">█</span></p>
+        <h1 class="reveal-up">Rijul Jain</h1>
+        <p class="role reveal-up" style="--delay:0.1s">Information Technology Administrator</p>
+        <p class="hero-text reveal-up" style="--delay:0.2s">
+          I support enterprise IT operations, streamline identity and workspace management, and strengthen security and compliance across growing teams.
+        </p>
+        <div class="hero-actions reveal-up" style="--delay:0.3s">
+          <a class="button primary" id="view-projects-btn" href="#projects">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            View Key Initiatives
+          </a>
+          <a class="button secondary" id="contact-btn" href="#contact">Contact Me</a>
+          <a class="button secondary" href="https://github.com/RijulJain001" target="_blank" rel="noreferrer" aria-label="View GitHub profile">GitHub</a>
+          <button class="button ghost" id="hero-terminal-btn" aria-label="Open interactive terminal">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            Try Terminal
+          </button>
+        </div>
+      </div>
+
+      <div class="profile-panel reveal-up" style="--delay:0.15s">
+        <div class="profile-frame">
+          <img src="assets/profile.jpg" alt="Portrait of Rijul Jain" onerror="this.onerror=null; this.src='assets/profile-placeholder.svg';">
+          <div class="scan-line" aria-hidden="true"></div>
+        </div>
+        <div class="profile-meta">
+          <span class="status-dot"></span>
+          <span>Open to IT infrastructure and security-focused roles</span>
+        </div>
+        <div class="terminal-card" aria-label="Operations terminal style profile summary">
+          <div class="terminal-top"><span></span><span></span><span></span></div>
+          <div class="terminal-lines" id="terminal-lines">
+            <p><span class="term-prompt">rijul@itops:~$</span> <span class="term-cmd" id="term-main-cmd"></span></p>
+            <p><span class="term-ok">[+]</span> focus: IT operations, IAM, security compliance</p>
+            <p><span class="term-ok">[+]</span> stack: JumpCloud, Azure, Google Workspace, Fortinet</p>
+            <p><span class="term-ok">[+]</span> status: supporting 550+ employees across locations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATS COUNTER ===================== -->
+    <section class="stats-section section-shell" aria-label="Portfolio statistics">
+      <div class="stats-grid">
+        <div class="stat-card reveal-up" style="--delay:0s">
+          <span class="stat-num" data-target="550" id="stat-users">0</span>
+          <span class="stat-plus">+</span>
+          <p class="stat-label">Employees Supported</p>
+        </div>
+        <div class="stat-card reveal-up" style="--delay:0.08s">
+          <span class="stat-num" data-target="5" id="stat-platforms">0</span>
+          <span class="stat-plus">+</span>
+          <p class="stat-label">Platforms Managed</p>
+        </div>
+        <div class="stat-card reveal-up" style="--delay:0.16s">
+          <span class="stat-num" data-target="3" id="stat-roles">0</span>
+          <span class="stat-plus">+</span>
+          <p class="stat-label">IT Roles</p>
+        </div>
+        <div class="stat-card reveal-up" style="--delay:0.24s">
+          <span class="stat-num" data-target="1" id="stat-team">0</span>
+          <span class="stat-suffix">Team</span>
+          <p class="stat-label">Single-Member IT</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="content-section section-shell">
+      <div class="section-heading reveal-up">
+        <p class="eyebrow">About</p>
+        <h2>About Me</h2>
+      </div>
+      <div class="section-grid">
+        <div class="about-card reveal-up" style="--delay:0.05s">
+          <div class="about-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <p>
+            I am pursuing a Bachelor of Computer Applications at Shridhar University, building a strong
+            foundation in computer science, system administration, networking, and cybersecurity.
+          </p>
+        </div>
+        <div class="about-card reveal-up" style="--delay:0.12s">
+          <div class="about-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <p>
+            I currently work as an Information Technology Administrator at LMDmax Corp, supporting 550+
+            employees across identity management, workplace tools, infrastructure operations, and ISO 27001
+            aligned security processes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects" class="content-section section-shell">
+      <div class="section-heading reveal-up">
+        <p class="eyebrow">Work</p>
+        <h2>Key Initiatives</h2>
+      </div>
+      <div class="cards-grid">
+
+        <!-- Card 1 -->
+        <article class="card reveal-up" style="--delay:0s"
+          data-modal="true"
+          data-title="Google Workspace Migration"
+          data-kicker="Enterprise Email"
+          data-desc="Led the migration from Zoho Mail to Google Workspace, helping the organization move email and collaboration workflows with minimal business disruption."
+          data-details="• Managed the migration from Zoho Mail to Google Workspace&#10;• Supported a smooth transition for business users during active operations&#10;• Helped reduce disruption while collaboration systems were being moved&#10;• Continued supporting Google Workspace as part of day-to-day IT operations"
+          data-tags="Google Workspace,Migration,Admin,Support">
+          <div class="card-accent" aria-hidden="true"></div>
+          <p class="card-kicker">Enterprise Email</p>
+          <h3>Google Workspace Migration</h3>
+          <p>Moved business email operations from Zoho Mail to Google Workspace with minimal disruption.</p>
+          <div class="tag-row">
+            <span>Google Workspace</span><span>Migration</span><span>Support</span>
+          </div>
+          <button class="card-cta" aria-label="View Google Workspace Migration details">
+            View Details
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card reveal-up" style="--delay:0.1s"
+          data-modal="true"
+          data-title="JumpCloud Rollout"
+          data-kicker="Identity &amp; Access"
+          data-desc="Implemented JumpCloud to centralize identity, device, and access management across the organization."
+          data-details="• Implemented JumpCloud for centralized identity and device administration&#10;• Supported access management across the organization from a single platform&#10;• Helped improve consistency in user onboarding and offboarding workflows&#10;• Strengthened day-to-day access control as part of core IT operations"
+          data-tags="JumpCloud,IAM,Devices,Access">
+          <div class="card-accent" aria-hidden="true"></div>
+          <p class="card-kicker">Identity &amp; Access</p>
+          <h3>JumpCloud Rollout</h3>
+          <p>Centralized identity, device, and access management to support a more consistent IT environment.</p>
+          <div class="tag-row">
+            <span>JumpCloud</span><span>IAM</span><span>Access</span>
+          </div>
+          <button class="card-cta" aria-label="View JumpCloud Rollout details">
+            View Details
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card reveal-up" style="--delay:0.2s"
+          data-modal="true"
+          data-title="ISO 27001 &amp; Fortinet Operations"
+          data-kicker="Security &amp; Compliance"
+          data-desc="Supported ISO 27001 compliance initiatives while administering Fortinet Firewall infrastructure to improve audit readiness and secure access controls."
+          data-details="• Contributed to ISO 27001 audits, documentation reviews, and asset controls&#10;• Supported information security processes aligned with compliance goals&#10;• Administered Fortinet Firewall infrastructure for network security&#10;• Helped maintain secure access controls across the environment"
+          data-tags="ISO 27001,Fortinet,Compliance,Security">
+          <div class="card-accent" aria-hidden="true"></div>
+          <p class="card-kicker">Security &amp; Compliance</p>
+          <h3>ISO 27001 &amp; Fortinet Operations</h3>
+          <p>Supported compliance work and secure network controls through ISO 27001 processes and firewall administration.</p>
+          <div class="tag-row">
+            <span>ISO 27001</span><span>Fortinet</span><span>Compliance</span>
+          </div>
+          <button class="card-cta" aria-label="View ISO 27001 and Fortinet Operations details">
+            View Details
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience" class="content-section section-shell">
+      <div class="section-heading reveal-up">
+        <p class="eyebrow">Career</p>
+        <h2>Experience</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item reveal-up" style="--delay:0s">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">June 2025 - Present</span>
+            <h3>Information Technology Administrator</h3>
+            <p class="timeline-sub">LMDmax Corp · Jaipur</p>
+            <p>Managing IT operations for 550+ employees across multiple locations, covering user support, system administration, onboarding, offboarding, vendors, assets, and security initiatives as a single-member IT team.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal-up" style="--delay:0.1s">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">January 2025 - March 2025</span>
+            <h3>Information Technology Support Engineer</h3>
+            <p class="timeline-sub">Jio Platforms Limited (JPL) · Jaipur, Rajasthan, India</p>
+            <p>Supported networking, Windows Server, computer hardware, Microsoft Office tools, and day-to-day technical troubleshooting with a strong focus on communication and reliability.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal-up" style="--delay:0.2s">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">November 2024 - December 2024</span>
+            <h3>Information Technology Support Engineer</h3>
+            <p class="timeline-sub">IndiGo (InterGlobe Aviation Ltd) · Jaipur, Rajasthan, India</p>
+            <p>Handled networking support, Windows operating systems, and computer hardware troubleshooting in a fast-moving operational environment.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== EDUCATION ===================== -->
+    <section id="education" class="content-section section-shell">
+      <div class="section-heading reveal-up">
+        <p class="eyebrow">Study</p>
+        <h2>Education</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item reveal-up" style="--delay:0s">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">August 2024 - May 2027</span>
+            <h3>Bachelor of Computer Applications</h3>
+            <p class="timeline-sub">Shridhar University, Pilani · Computer Science</p>
+            <p>Pursuing a BCA focused on computer science with continued interest in system administration, networking, and security operations.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal-up" style="--delay:0.1s">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">November 2023 - October 2024</span>
+            <h3>DevOps Enthusiast</h3>
+            <p class="timeline-sub">IANT (Institute of Advance Network Technology)</p>
+            <p>Completed training that strengthened practical understanding of infrastructure workflows and modern operational tooling.</p>
+          </div>
+        </article>
+        <article class="timeline-item reveal-up" style="--delay:0.2s">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-body">
+            <span class="timeline-date">November 2022 - October 2023</span>
+            <h3>CHNA (Computer Hardware and Networking Administrator)</h3>
+            <p class="timeline-sub">IANT (Institute of Advance Network Technology) · System Engineering</p>
+            <p>Built core knowledge in computer hardware, networking, troubleshooting, and system engineering fundamentals.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== CERTIFICATIONS ===================== -->
+    <section id="certifications" class="content-section section-shell">
+      <div class="section-heading reveal-up">
+        <p class="eyebrow">Credentials</p>
+        <h2>Certifications &amp; Learning</h2>
+      </div>
+      <div class="certs-grid">
+
+        <div class="cert-card reveal-up" style="--delay:0s">
+          <div class="cert-badge cert-badge-thm" aria-label="CHNA badge">CHNA</div>
+          <div class="cert-body">
+            <h3>CHNA</h3>
+            <p class="cert-issuer">IANT · System Engineering</p>
+            <p class="cert-desc">Computer Hardware and Networking Administrator training focused on core infrastructure and troubleshooting skills.</p>
+            <div class="cert-status completed">Completed</div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal-up" style="--delay:0.1s">
+          <div class="cert-badge cert-badge-owasp" aria-label="Ethical Hacker Expert badge">EH</div>
+          <div class="cert-body">
+            <h3>Ethical Hacker Expert</h3>
+            <p class="cert-issuer">Listed on LinkedIn profile</p>
+            <p class="cert-desc">Security-focused learning that complements hands-on IT operations and broader cybersecurity fundamentals.</p>
+            <div class="cert-status completed">Completed</div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal-up" style="--delay:0.2s">
+          <div class="cert-badge cert-badge-google" aria-label="Google badge">G</div>
+          <div class="cert-body">
+            <h3>Cloud Computing</h3>
+            <p class="cert-issuer">Listed on LinkedIn profile</p>
+            <p class="cert-desc">Cloud-oriented learning that supports modern identity, productivity, and infrastructure administration.</p>
+            <div class="cert-status completed">Completed</div>
+          </div>
+        </div>
+
+        <div class="cert-card reveal-up" style="--delay:0.3s">
+          <div class="cert-badge cert-badge-ceh" aria-label="Star Cyber Security User badge">SC</div>
+          <div class="cert-body">
+            <h3>Star Cyber Security User</h3>
+            <p class="cert-issuer">Listed on LinkedIn profile</p>
+            <p class="cert-desc">Security learning that reinforces safer operational practices and awareness in day-to-day IT environments.</p>
+            <div class="cert-status completed">Completed</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills" class="content-section section-shell">
+      <div class="section-heading reveal-up">
+        <p class="eyebrow">Capabilities</p>
+        <h2>Skills &amp; Strengths</h2>
+      </div>
+      <div class="skills-stack">
+        <div class="skills-block reveal-up" style="--delay:0s">
+          <div class="skills-block-head">
+            <h3 class="skills-subhead">Technical Skills</h3>
+            <p class="skills-subtext">Core platforms, infrastructure, and security operations tools I use in day-to-day IT work.</p>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-chip reveal-up" style="--delay:0.02s">
+              <span class="skill-icon" aria-hidden="true">☁️</span>
+              <span class="skill-name">JumpCloud</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:90%"></div></div>
+            </div>
+            <div class="skill-chip reveal-up" style="--delay:0.05s">
+              <span class="skill-icon" aria-hidden="true">🔷</span>
+              <span class="skill-name">Microsoft Azure</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:85%"></div></div>
+            </div>
+            <div class="skill-chip reveal-up" style="--delay:0.08s">
+              <span class="skill-icon" aria-hidden="true">🛡️</span>
+              <span class="skill-name">ISO 27001 Compliance</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:80%"></div></div>
+            </div>
+            <div class="skill-chip reveal-up" style="--delay:0.11s">
+              <span class="skill-icon" aria-hidden="true">📨</span>
+              <span class="skill-name">Google Workspace Admin</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:78%"></div></div>
+            </div>
+            <div class="skill-chip reveal-up" style="--delay:0.14s">
+              <span class="skill-icon" aria-hidden="true">🔥</span>
+              <span class="skill-name">Fortinet Firewall</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:75%"></div></div>
+            </div>
+            <div class="skill-chip reveal-up" style="--delay:0.17s">
+              <span class="skill-icon" aria-hidden="true">🪟</span>
+              <span class="skill-name">Windows Server</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:80%"></div></div>
+            </div>
+            <div class="skill-chip reveal-up" style="--delay:0.2s">
+              <span class="skill-icon" aria-hidden="true">📡</span>
+              <span class="skill-name">Network Administration</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:88%"></div></div>
+            </div>
+            <div class="skill-chip reveal-up" style="--delay:0.23s">
+              <span class="skill-icon" aria-hidden="true">🧩</span>
+              <span class="skill-name">IT Infrastructure</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:82%"></div></div>
+            </div>
+            <div class="skill-chip reveal-up" style="--delay:0.26s">
+              <span class="skill-icon" aria-hidden="true">📦</span>
+              <span class="skill-name">IT Asset Management</span>
+              <div class="skill-bar"><div class="skill-fill" style="--pct:76%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-block reveal-up" style="--delay:0.08s">
+          <div class="skills-block-head">
+            <h3 class="skills-subhead">Soft Skills</h3>
+            <p class="skills-subtext">Professional strengths that help me support users, solve issues, and keep operations reliable.</p>
+          </div>
+          <div class="soft-skills-grid">
+            <article class="soft-skill-card reveal-up" style="--delay:0.1s">
+              <span class="soft-skill-icon" aria-hidden="true">💬</span>
+              <h4 class="soft-skill-title">Effective Communication</h4>
+              <p class="soft-skill-text">Translate technical issues into clear updates for users, teams, and vendors.</p>
+            </article>
+            <article class="soft-skill-card reveal-up" style="--delay:0.13s">
+              <span class="soft-skill-icon" aria-hidden="true">⏱️</span>
+              <h4 class="soft-skill-title">Time Management</h4>
+              <p class="soft-skill-text">Prioritize urgent tickets while keeping planned work and routine operations on track.</p>
+            </article>
+            <article class="soft-skill-card reveal-up" style="--delay:0.16s">
+              <span class="soft-skill-icon" aria-hidden="true">🧠</span>
+              <h4 class="soft-skill-title">Problem Solving</h4>
+              <p class="soft-skill-text">Investigate issues methodically and focus on fixes that prevent repeat disruptions.</p>
+            </article>
+            <article class="soft-skill-card reveal-up" style="--delay:0.19s">
+              <span class="soft-skill-icon" aria-hidden="true">🤝</span>
+              <h4 class="soft-skill-title">User Support</h4>
+              <p class="soft-skill-text">Support people patiently across different teams, roles, and technical comfort levels.</p>
+            </article>
+            <article class="soft-skill-card reveal-up" style="--delay:0.22s">
+              <span class="soft-skill-icon" aria-hidden="true">🔄</span>
+              <h4 class="soft-skill-title">Adaptability</h4>
+              <p class="soft-skill-text">Switch comfortably between identity, systems, network, vendor, and compliance responsibilities.</p>
+            </article>
+            <article class="soft-skill-card reveal-up" style="--delay:0.25s">
+              <span class="soft-skill-icon" aria-hidden="true">📝</span>
+              <h4 class="soft-skill-title">Documentation</h4>
+              <p class="soft-skill-text">Maintain clear records, SOPs, and notes for smoother handovers and better accountability.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="content-section section-shell contact-section">
+      <div class="section-heading reveal-up">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's Connect</h2>
+        <p class="contact-sub reveal-up" style="--delay:0.05s">Open to IT operations, infrastructure, and security-focused opportunities.</p>
+      </div>
+      <div class="contact-grid">
+
+        <!-- Email with copy button -->
+        <div class="contact-card reveal-up email-card-wrap" style="--delay:0s">
+          <a href="mailto:jainrijul02@gmail.com" class="contact-card-inner" id="email-link">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <span class="contact-label">Email Me</span>
+            <span class="contact-value" id="email-val">jainrijul02@gmail.com</span>
+          </a>
+          <button class="copy-btn" id="copy-email-btn" aria-label="Copy email address" title="Copy email">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span id="copy-label">Copy</span>
+          </button>
+        </div>
+
+        <a href="https://www.linkedin.com/in/jainrijul1122" class="contact-card reveal-up" id="linkedin-link" style="--delay:0.1s" target="_blank" rel="noreferrer">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">linkedin.com/in/jainrijul1122</span>
+        </a>
+
+        <a href="https://github.com/RijulJain001" class="contact-card reveal-up" id="github-link" style="--delay:0.2s" target="_blank" rel="noreferrer">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">github.com/RijulJain001</span>
+        </a>
+
+        <a href="assets/Rijul_Jain_Profile.pdf" class="contact-card reveal-up" id="resume-link" style="--delay:0.3s" download>
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          </div>
+          <span class="contact-label">Resume</span>
+          <span class="contact-value">Download PDF profile</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Designed &amp; developed by <strong>Rijul Jain</strong> · <span class="footer-year"></span></p>
+    <p class="footer-tag">rijul@itops:~$ echo "secure systems, support people"</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
